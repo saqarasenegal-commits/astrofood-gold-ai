@@ -1,0 +1,1420 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AstroFood Premium Gold – Chef-AI & Boutique</title>
+  <meta name="description" content="AstroFood Premium Gold : Chef-AI connecté à /api/chefai + boutique de packs digitaux. FR / EN / AR." />
+  <meta name="theme-color" content="#020617" />
+
+  <!-- Police arabe -->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --gold: #FBBF24;
+      --amber: #f59e0b;
+      --bg: radial-gradient(circle at top, #0f172a, #020617 65%);
+      --card-bg: rgba(15,23,42,0.9);
+      --border-subtle: rgba(148,163,184,0.35);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: #e5e7eb;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    body[dir="rtl"] {
+      font-family: "Cairo", system-ui, -apple-system, "Segoe UI", sans-serif;
+    }
+
+    .page {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 1.5rem 1.25rem 4.5rem;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+    }
+
+    .brand-logo {
+      width: 44px;
+      height: 44px;
+      border-radius: 999px;
+      border: 1px solid rgba(251,191,36,0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.35rem;
+      background: radial-gradient(circle at 30% 0%, #facc15, #b45309 60%, #111827 100%);
+      box-shadow: 0 0 28px rgba(251,191,36,0.28);
+    }
+
+    .brand-text-main {
+      font-size: 1.1rem;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+      color: #e5e7eb;
+    }
+
+    .brand-text-sub {
+      font-size: .8rem;
+      color: #9ca3af;
+    }
+
+    .qr-block {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+    }
+
+    .qr-box {
+      width: 70px;
+      height: 70px;
+      border-radius: .75rem;
+      border: 1px dashed rgba(251,191,36,0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .65rem;
+      text-align: center;
+      padding: .25rem;
+    }
+
+    .qr-legend {
+      font-size: .75rem;
+      color: #e5e7eb;
+      max-width: 140px;
+    }
+
+    .qr-legend span {
+      color: var(--gold);
+      font-weight: 600;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: .35rem;
+      padding: .2rem .6rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.6);
+      font-size: .7rem;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: #9ca3af;
+    }
+
+    h1 {
+      margin: .4rem 0 .35rem;
+      font-size: 1.4rem;
+      color: #f9fafb;
+    }
+
+    .subtitle {
+      font-size: .85rem;
+      color: #cbd5f5;
+      max-width: 520px;
+    }
+
+    .lang-switch {
+      display: flex;
+      align-items: center;
+      gap: .35rem;
+      font-size: .8rem;
+      color: #9ca3af;
+    }
+
+    .lang-switch button {
+      border: none;
+      background: transparent;
+      color: #9ca3af;
+      cursor: pointer;
+      padding: .15rem .4rem;
+      border-radius: 999px;
+      font-size: .8rem;
+    }
+
+    .lang-switch button.is-active {
+      color: #0f172a;
+      background: linear-gradient(to right, #fbbf24, #f59e0b);
+      font-weight: 600;
+    }
+
+    main {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .panel {
+      border-radius: 1rem;
+      border: 1px solid var(--border-subtle);
+      background: radial-gradient(circle at 0% 0%, rgba(248,250,252,0.02), rgba(15,23,42,0.96));
+      padding: 1.25rem 1rem;
+    }
+
+    .panel-header {
+      display: flex;
+      justify-content: space-between;
+      gap: .5rem;
+      margin-bottom: .75rem;
+    }
+
+    .panel-title {
+      font-size: .95rem;
+      font-weight: 600;
+      color: #e5e7eb;
+    }
+
+    .panel-desc {
+      font-size: .8rem;
+      color: #9ca3af;
+      max-width: 420px;
+    }
+
+    .pill-mini {
+      display: inline-flex;
+      align-items: center;
+      gap: .35rem;
+      padding: .12rem .55rem;
+      border-radius: 999px;
+      border: 1px solid rgba(55,65,81,0.9);
+      background: rgba(15,23,42,0.75);
+      font-size: .7rem;
+      color: #9ca3af;
+    }
+
+    .pill-mini span {
+      color: var(--gold);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: .75rem;
+      margin-bottom: 1rem;
+    }
+
+    label {
+      display: flex;
+      flex-direction: column;
+      gap: .25rem;
+      font-size: .75rem;
+      color: #9ca3af;
+    }
+
+    select {
+      border-radius: .6rem;
+      border: 1px solid rgba(55,65,81,0.9);
+      background: #020617;
+      color: #e5e7eb;
+      padding: .4rem .55rem;
+      font-size: .8rem;
+    }
+
+    select:focus {
+      outline: 1px solid rgba(251,191,36,0.8);
+      border-color: rgba(251,191,36,0.8);
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: .75rem;
+    }
+
+    .btn-main {
+      border-radius: 999px;
+      border: none;
+      padding: .55rem 1.4rem;
+      font-size: .85rem;
+      font-weight: 600;
+      cursor: pointer;
+      background: radial-gradient(circle at 20% 0%, #facc15, #b45309 55%, #7c2d12 100%);
+      color: #0f172a;
+      box-shadow: 0 10px 30px rgba(248,250,252,0.1), 0 0 28px rgba(250,204,21,0.35);
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+    }
+
+    .btn-main span.icon {
+      font-size: 1rem;
+    }
+
+    .status {
+      font-size: .8rem;
+      color: #9ca3af;
+    }
+
+    .status strong {
+      color: var(--gold);
+    }
+
+    /* Recettes */
+    .recipes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: .85rem;
+    }
+
+    .recipe-card {
+      border-radius: .9rem;
+      border: 1px solid rgba(31,41,55,0.9);
+      background: var(--card-bg);
+      padding: .7rem .75rem .8rem;
+      display: flex;
+      flex-direction: column;
+      gap: .25rem;
+      min-height: 130px;
+    }
+
+    .recipe-kicker {
+      font-size: .7rem;
+      text-transform: uppercase;
+      letter-spacing: .18em;
+      color: #9ca3af;
+    }
+
+    .recipe-title {
+      font-size: .9rem;
+      font-weight: 600;
+      color: #e5e7eb;
+    }
+
+    .recipe-body {
+      font-size: .8rem;
+      color: #cbd5e1;
+      flex: 1;
+    }
+
+    .recipe-foot {
+      font-size: .72rem;
+      color: #94a3b8;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: .5rem;
+      margin-top: .3rem;
+    }
+
+    .recipe-tag {
+      padding: .08rem .5rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.6);
+      font-size: .7rem;
+      color: #e5e7eb;
+    }
+
+    /* Boutique */
+    .shop-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: .9rem;
+    }
+
+    .pack-card {
+      border-radius: 1rem;
+      border: 1px solid rgba(55,65,81,0.9);
+      background: radial-gradient(circle at 0% 0%, rgba(251,191,36,0.08), rgba(15,23,42,0.98));
+      padding: .9rem .85rem .95rem;
+      display: flex;
+      flex-direction: column;
+      gap: .4rem;
+    }
+
+    .pack-badge-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: .5rem;
+      font-size: .7rem;
+    }
+
+    .pack-pill {
+      padding: .05rem .5rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.7);
+      text-transform: uppercase;
+      letter-spacing: .15em;
+      color: #e5e7eb;
+    }
+
+    .pack-tagline {
+      font-size: .7rem;
+      color: #fbbf24;
+      text-align: right;
+    }
+
+    .pack-title {
+      font-size: .95rem;
+      font-weight: 600;
+      color: #f9fafb;
+    }
+
+    .pack-desc {
+      font-size: .78rem;
+      color: #cbd5e1;
+    }
+
+    .pack-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: .25rem;
+      font-size: .8rem;
+      color: #e5e7eb;
+    }
+
+    .pack-price-main {
+      font-weight: 600;
+      color: var(--gold);
+    }
+
+    .pack-price-note {
+      font-size: .7rem;
+      color: #9ca3af;
+    }
+
+    .pack-btn-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: .5rem;
+      margin-top: .5rem;
+    }
+
+    .btn-pack {
+      flex: 1;
+      border-radius: 999px;
+      border: none;
+      padding: .4rem .85rem;
+      font-size: .8rem;
+      font-weight: 600;
+      cursor: pointer;
+      background: #020617;
+      color: #e5e7eb;
+      border: 1px solid rgba(148,163,184,0.7);
+    }
+
+    .btn-pack.primary {
+      background: linear-gradient(to right, #fbbf24, #f97316);
+      color: #111827;
+      border: none;
+    }
+
+    .btn-pack:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    footer {
+      margin-top: 1.5rem;
+      font-size: .7rem;
+      color: #6b7280;
+      text-align: center;
+    }
+
+    footer span {
+      color: var(--gold);
+    }
+
+    /* Chat */
+    .chat-toggle {
+      position: fixed;
+      right: 1rem;
+      bottom: 1rem;
+      z-index: 20;
+      border-radius: 999px;
+      border: none;
+      padding: .55rem 1rem;
+      font-size: .8rem;
+      font-weight: 600;
+      cursor: pointer;
+      background: radial-gradient(circle at 20% 0%, #facc15, #b45309 55%, #7c2d12 100%);
+      color: #0f172a;
+      box-shadow: 0 10px 30px rgba(15,23,42,0.75), 0 0 24px rgba(250,204,21,0.35);
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+    }
+
+    .chat-panel {
+      position: fixed;
+      right: 1rem;
+      bottom: 3.3rem;
+      width: 290px;
+      max-height: 360px;
+      border-radius: 1rem;
+      border: 1px solid rgba(55,65,81,0.9);
+      background: radial-gradient(circle at 0% 0%, rgba(248,250,252,0.03), #020617);
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      z-index: 25;
+    }
+
+    .chat-panel.open {
+      display: flex;
+    }
+
+    .chat-head {
+      padding: .55rem .7rem;
+      border-bottom: 1px solid rgba(31,41,55,0.9);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: .5rem;
+    }
+
+    .chat-head-title {
+      font-size: .78rem;
+      font-weight: 600;
+      color: #e5e7eb;
+    }
+
+    .chat-head-sub {
+      font-size: .7rem;
+      color: #9ca3af;
+    }
+
+    .chat-close {
+      border: none;
+      background: transparent;
+      color: #9ca3af;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .chat-messages {
+      flex: 1;
+      padding: .55rem .7rem;
+      overflow-y: auto;
+      font-size: .76rem;
+      display: flex;
+      flex-direction: column;
+      gap: .4rem;
+    }
+
+    .msg {
+      padding: .35rem .5rem;
+      border-radius: .7rem;
+      max-width: 85%;
+    }
+
+    .msg.user {
+      margin-left: auto;
+      background: rgba(251,191,36,0.1);
+      border-bottom-right-radius: .15rem;
+    }
+
+    .msg.ai {
+      margin-right: auto;
+      background: rgba(15,23,42,0.95);
+      border: 1px solid rgba(31,41,55,0.9);
+      border-bottom-left-radius: .15rem;
+    }
+
+    .chat-input-row {
+      border-top: 1px solid rgba(31,41,55,0.9);
+      padding: .45rem .55rem;
+      display: flex;
+      gap: .4rem;
+      align-items: center;
+    }
+
+    .chat-input-row input {
+      flex: 1;
+      border-radius: 999px;
+      border: 1px solid rgba(55,65,81,0.9);
+      background: #020617;
+      color: #e5e7eb;
+      padding: .3rem .7rem;
+      font-size: .75rem;
+    }
+
+    .chat-input-row button {
+      border-radius: 999px;
+      border: none;
+      padding: .35rem .65rem;
+      font-size: .75rem;
+      font-weight: 600;
+      cursor: pointer;
+      background: linear-gradient(to right, #fbbf24, #f97316);
+      color: #111827;
+    }
+
+    @media (max-width: 640px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .qr-block {
+        align-self: stretch;
+        justify-content: space-between;
+      }
+      .chat-panel {
+        right: .5rem;
+        left: .5rem;
+        width: auto;
+      }
+      .chat-toggle {
+        right: .5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="brand">
+        <div class="brand-logo">♨︎</div>
+        <div>
+          <div class="brand-text-main">AstroFood Premium Gold</div>
+          <div class="brand-text-sub" data-i18n="brandTagline">
+            Chef-AI, recettes & cartes digitales reliées à ton signe.
+          </div>
+        </div>
+      </div>
+
+      <div class="qr-block">
+        <div class="qr-box">
+          <!-- Remplace l'image ci-dessous par ton vrai QR si besoin -->
+          <span data-i18n="qrInside">QR<br/>WhatsApp<br/>ou Boutique</span>
+        </div>
+        <div class="qr-legend" data-i18n="qrLegend">
+          Scanne le <span>QR doré</span> pour discuter, commander un pack ou recevoir l’aide Chef-AI.
+        </div>
+      </div>
+    </header>
+
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:.75rem;margin-bottom:1rem;">
+      <div>
+        <div class="pill" data-i18n="pillLabel">
+          CONNECTÉ À TON BACKEND /API/CHEFAI
+        </div>
+        <h1 data-i18n="pageTitle">
+          Chef-AI : paramètres & boutique AstroFood
+        </h1>
+        <p class="subtitle" data-i18n="pageSubtitle">
+          Signe ✧ état ✧ repas → 3 recettes IA prêtes à afficher sur ta carte digitale, plus des packs à vendre.
+        </p>
+      </div>
+      <div class="lang-switch">
+        <span data-i18n="langLabel">Langue UI :</span>
+        <button type="button" data-lang="fr" class="is-active">FR</button>
+        <button type="button" data-lang="en">EN</button>
+        <button type="button" data-lang="ar">ع</button>
+      </div>
+    </div>
+
+    <main>
+      <!-- PARAMÈTRES CHEF-AI -->
+      <section class="panel" id="chef-panel">
+        <div class="panel-header">
+          <div>
+            <div class="panel-title" data-i18n="chefTitle">
+              Paramètres Chef-AI
+            </div>
+            <div class="panel-desc" data-i18n="chefDesc">
+              Ces champs sont envoyés à <code>/api/chefai</code>. Ton backend renvoie 3 recettes personnalisées pour ce signe, cet état énergétique et ce type de repas.
+            </div>
+          </div>
+          <div class="pill-mini" data-i18n="chefPill">
+            Mode : <span>recipes</span> · JSON propre
+          </div>
+        </div>
+
+        <div class="form-grid">
+          <label>
+            <span data-i18n="labelSign">Signe astrologique</span>
+            <select id="sign">
+              <option value="aries">♈ Bélier</option>
+              <option value="taurus">♉ Taureau</option>
+              <option value="gemini">♊ Gémeaux</option>
+              <option value="cancer">♋ Cancer</option>
+              <option value="leo">♌ Lion</option>
+              <option value="virgo">♍ Vierge</option>
+              <option value="libra">♎ Balance</option>
+              <option value="scorpio">♏ Scorpion</option>
+              <option value="sagittarius">♐ Sagittaire</option>
+              <option value="capricorn">♑ Capricorne</option>
+              <option value="aquarius">♒ Verseau</option>
+              <option value="pisces">♓ Poissons</option>
+            </select>
+          </label>
+
+          <label>
+            <span data-i18n="labelState">État énergétique</span>
+            <select id="state">
+              <option value="equilibre" data-i18n="stateBalanced">Équilibre</option>
+              <option value="energie" data-i18n="stateEnergy">+ Énergie</option>
+              <option value="detente" data-i18n="stateRelax">Relax / Détente</option>
+              <option value="focus" data-i18n="stateFocus">Focus / Travail</option>
+              <option value="romantique" data-i18n="stateLove">Romantique</option>
+            </select>
+          </label>
+
+          <label>
+            <span data-i18n="labelMeal">Type de repas</span>
+            <select id="meal">
+              <option value="petit_dej" data-i18n="mealBreakfast">Petit déjeuner</option>
+              <option value="dejeuner" data-i18n="mealLunch">Déjeuner</option>
+              <option value="diner" data-i18n="mealDinner">Dîner</option>
+              <option value="snack" data-i18n="mealSnack">Snack / Boisson</option>
+            </select>
+          </label>
+
+          <label>
+            <span data-i18n="labelLang">Langue des recettes</span>
+            <select id="recipes-lang">
+              <option value="fr">Français</option>
+              <option value="en">English</option>
+              <option value="ar">العربية</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="actions">
+          <button class="btn-main" id="generate-btn">
+            <span class="icon">✨</span>
+            <span data-i18n="btnGenerate">Générer 3 recettes avec Chef-AI</span>
+          </button>
+          <div class="status" id="status" data-i18n="statusIdle">
+            Prêt. Clique pour interroger ton backend <strong>/api/chefai</strong>.
+          </div>
+        </div>
+      </section>
+
+      <!-- RECETTES GÉNÉRÉES -->
+      <section class="panel">
+        <div class="panel-header">
+          <div>
+            <div class="panel-title" data-i18n="recipesTitle">
+              Recettes générées (JSON → cartes)
+            </div>
+            <div class="panel-desc" data-i18n="recipesDesc">
+              On affiche ici le titre, une courte explication de préparation/cuisson et une note énergétique. Tu peux ensuite pousser ces recettes vers ta carte digitale AstroFood.
+            </div>
+          </div>
+        </div>
+
+        <div class="recipes-grid" id="recipes-grid">
+          <article class="recipe-card">
+            <div class="recipe-kicker" data-i18n="recipesPlaceholderKicker">
+              En attente
+            </div>
+            <div class="recipe-title" data-i18n="recipesPlaceholderTitle">
+              Clique sur « Générer » pour voir les idées de Chef-AI.
+            </div>
+            <div class="recipe-body" data-i18n="recipesPlaceholderBody">
+              Tes 3 recettes personnalisées (préparation, cuisson, tips) apparaîtront ici sous forme de cartes prêtes à afficher sur AstroFood.
+            </div>
+            <div class="recipe-foot">
+              <span class="recipe-tag" data-i18n="recipesPlaceholderTag">Préparation & cuisson</span>
+              <span>⏱ ~</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- BOUTIQUE ASTROFOOD -->
+      <section class="panel">
+        <div class="panel-header">
+          <div>
+            <div class="panel-title" data-i18n="shopTitle">
+              Boutique AstroFood – Packs digitaux
+            </div>
+            <div class="panel-desc" data-i18n="shopDesc">
+              Ces cartes représentent tes packs LemonSqueezy (ou autre). Chaque bouton « Acheter » peut pointer vers l’URL de paiement correspondante.
+            </div>
+          </div>
+          <div class="pill-mini" data-i18n="shopPill">
+            Connecte ici tes liens de paiement
+          </div>
+        </div>
+
+        <div class="shop-grid">
+          <article class="pack-card">
+            <div class="pack-badge-row">
+              <div class="pack-pill" data-i18n="pack1Badge">Starter Pack</div>
+              <div class="pack-tagline" data-i18n="pack1Tagline">3 signes · PDF + PNG</div>
+            </div>
+            <div class="pack-title" data-i18n="pack1Title">
+              Mini-pack AstroFood (3 signes)
+            </div>
+            <div class="pack-desc" data-i18n="pack1Desc">
+              Pour tester le concept : 3 cartes digitales complètes (FR/EN/AR) pour 3 signes au choix, prêtes à envoyer à tes clients.
+            </div>
+            <div class="pack-meta">
+              <div>
+                <div class="pack-price-main" data-i18n="pack1Price">9,90 €</div>
+                <div class="pack-price-note" data-i18n="pack1Note">Licence perso / test</div>
+              </div>
+              <div class="pack-price-note" data-i18n="pack1Format">Format : PNG + PDF</div>
+            </div>
+            <div class="pack-btn-row">
+              <button class="btn-pack primary" data-pack="starter" data-i18n="btnBuy">
+                Acheter le pack
+              </button>
+              <button class="btn-pack" data-i18n="btnDetails">
+                Voir détail
+              </button>
+            </div>
+          </article>
+
+          <article class="pack-card">
+            <div class="pack-badge-row">
+              <div class="pack-pill" data-i18n="pack2Badge">Full Zodiac</div>
+              <div class="pack-tagline" data-i18n="pack2Tagline">12 signes · Chef-AI ready</div>
+            </div>
+            <div class="pack-title" data-i18n="pack2Title">
+              Pack complet 12 signes – Premium Gold
+            </div>
+            <div class="pack-desc" data-i18n="pack2Desc">
+              Les 12 cartes AstroFood Premium Gold prêtes à vendre, alignées avec Chef-AI (3 repas par signe, 3 modes énergétiques, FR/EN/AR).
+            </div>
+            <div class="pack-meta">
+              <div>
+                <div class="pack-price-main" data-i18n="pack2Price">39,00 €</div>
+                <div class="pack-price-note" data-i18n="pack2Note">Usage pro / restaurant</div>
+              </div>
+              <div class="pack-price-note" data-i18n="pack2Format">Fichiers HD + sources</div>
+            </div>
+            <div class="pack-btn-row">
+              <button class="btn-pack primary" data-pack="full" data-i18n="btnBuy">
+                Acheter le pack
+              </button>
+              <button class="btn-pack" data-i18n="btnDetails">
+                Voir détail
+              </button>
+            </div>
+          </article>
+
+          <article class="pack-card">
+            <div class="pack-badge-row">
+              <div class="pack-pill" data-i18n="pack3Badge">Africa+</div>
+              <div class="pack-tagline" data-i18n="pack3Tagline">Afro-Senegal · Local</div>
+            </div>
+            <div class="pack-title" data-i18n="pack3Title">
+              Extension « Africa+ » – Recettes locales
+            </div>
+            <div class="pack-desc" data-i18n="pack3Desc">
+              Pack bonus avec une sélection de recettes afro-sénégalaises par signe (fonio, bouye, bissap, mil, etc.), intégrables à Chef-AI.
+            </div>
+            <div class="pack-meta">
+              <div>
+                <div class="pack-price-main" data-i18n="pack3Price">19,00 €</div>
+                <div class="pack-price-note" data-i18n="pack3Note">Add-on pour la carte</div>
+              </div>
+              <div class="pack-price-note" data-i18n="pack3Format">Recettes + visuels</div>
+            </div>
+            <div class="pack-btn-row">
+              <button class="btn-pack primary" data-pack="africa" data-i18n="btnBuy">
+                Acheter le pack
+              </button>
+              <button class="btn-pack" data-i18n="btnDetails">
+                Voir détail
+              </button>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>AstroFood Premium Gold</span> · Chef-AI connecté à ton backend · UI statique prête à l’emploi (FR / EN / AR).
+    </footer>
+  </div>
+
+  <!-- CHAT FLOTTANT CHEF-AI -->
+  <button class="chat-toggle" id="chat-toggle">
+    💬 Chef-AI
+  </button>
+
+  <div class="chat-panel" id="chat-panel">
+    <div class="chat-head">
+      <div>
+        <div class="chat-head-title" data-i18n="chatTitle">Chef-AI – chat rapide</div>
+        <div class="chat-head-sub" data-i18n="chatSubtitle">Pose une question courte sur les recettes ou ton signe.</div>
+      </div>
+      <button class="chat-close" id="chat-close" aria-label="Fermer">×</button>
+    </div>
+    <div class="chat-messages" id="chat-messages">
+      <div class="msg ai" data-i18n="chatWelcome">
+        Salut, je suis Chef-AI. Dis-moi ton signe et ce que tu cherches (par ex. « idée de dîner léger pour Lion »).
+      </div>
+    </div>
+    <form class="chat-input-row" id="chat-form">
+      <input type="text" id="chat-input" autocomplete="off" placeholder="Ex : Recette afro pour Cancer ce soir…" />
+      <button type="submit" id="chat-send">OK</button>
+    </form>
+  </div>
+
+  <script>           
+    // ------------------ CONFIG API ------------------
+    // Si tu es en local avec un backend Express sur 3000 :
+    // const API_URL = "http://localhost:3000/api/chefai";
+    // Si ton HTML est servi par le même domaine que /api/chefai :
+   const API_URL = "/api/chefai";
+   
+
+
+    // ------------------ I18N (FR / EN / AR) ------------------
+    const i18n = {
+      fr: {
+        brandTagline: "Chef-AI, recettes & cartes digitales reliées à ton signe.",
+        qrInside: "QR\nWhatsApp\nou Boutique",
+        qrLegend: "Scanne le <span>QR doré</span> pour discuter, commander un pack ou recevoir l’aide Chef-AI.",
+        pillLabel: "CONNECTÉ À TON BACKEND /API/CHEFAI",
+        pageTitle: "Chef-AI : paramètres & boutique AstroFood",
+        pageSubtitle: "Signe ✧ état ✧ repas → 3 recettes IA prêtes à afficher sur ta carte digitale, plus des packs à vendre.",
+        langLabel: "Langue UI :",
+        chefTitle: "Paramètres Chef-AI",
+        chefDesc: "Ces champs sont envoyés à <code>/api/chefai</code>. Ton backend renvoie 3 recettes personnalisées pour ce signe, cet état énergétique et ce type de repas.",
+        chefPill: "Mode : <span>recipes</span> · JSON propre",
+        labelSign: "Signe astrologique",
+        labelState: "État énergétique",
+        labelMeal: "Type de repas",
+        labelLang: "Langue des recettes",
+        stateBalanced: "Équilibre",
+        stateEnergy: "+ Énergie",
+        stateRelax: "Relax / Détente",
+        stateFocus: "Focus / Travail",
+        stateLove: "Romantique",
+        mealBreakfast: "Petit déjeuner",
+        mealLunch: "Déjeuner",
+        mealDinner: "Dîner",
+        mealSnack: "Snack / Boisson",
+        btnGenerate: "Générer 3 recettes avec Chef-AI",
+        statusIdle: "Prêt. Clique pour interroger ton backend <strong>/api/chefai</strong>.",
+        statusLoading: "Génération en cours… Chef-AI prépare 3 recettes.",
+        statusOk: "Recettes reçues depuis <strong>/api/chefai</strong>.",
+        statusError: "Erreur : vérifie ton backend /api/chefai ou la console.",
+        recipesTitle: "Recettes générées (JSON → cartes)",
+        recipesDesc: "On affiche ici le titre, une courte explication de préparation/cuisson et une note énergétique. Tu peux ensuite pousser ces recettes vers ta carte digitale AstroFood.",
+        recipesPlaceholderKicker: "En attente",
+        recipesPlaceholderTitle: "Clique sur « Générer » pour voir les idées de Chef-AI.",
+        recipesPlaceholderBody: "Tes 3 recettes personnalisées (préparation, cuisson, tips) apparaîtront ici sous forme de cartes prêtes à afficher sur AstroFood.",
+        recipesPlaceholderTag: "Préparation & cuisson",
+        shopTitle: "Boutique AstroFood – Packs digitaux",
+        shopDesc: "Ces cartes représentent tes packs LemonSqueezy (ou autre). Chaque bouton « Acheter » peut pointer vers l’URL de paiement correspondante.",
+        shopPill: "Connecte ici tes liens de paiement",
+        pack1Badge: "Starter Pack",
+        pack1Tagline: "3 signes · PDF + PNG",
+        pack1Title: "Mini-pack AstroFood (3 signes)",
+        pack1Desc: "Pour tester le concept : 3 cartes digitales complètes (FR/EN/AR) pour 3 signes au choix, prêtes à envoyer à tes clients.",
+        pack1Price: "9,90 €",
+        pack1Note: "Licence perso / test",
+        pack1Format: "Format : PNG + PDF",
+        pack2Badge: "Full Zodiac",
+        pack2Tagline: "12 signes · Chef-AI ready",
+        pack2Title: "Pack complet 12 signes – Premium Gold",
+        pack2Desc: "Les 12 cartes AstroFood Premium Gold prêtes à vendre, alignées avec Chef-AI (3 repas par signe, 3 modes énergétiques, FR/EN/AR).",
+        pack2Price: "39,00 €",
+        pack2Note: "Usage pro / restaurant",
+        pack2Format: "Fichiers HD + sources",
+        pack3Badge: "Africa+",
+        pack3Tagline: "Afro-Senegal · Local",
+        pack3Title: "Extension « Africa+ » – Recettes locales",
+        pack3Desc: "Pack bonus avec une sélection de recettes afro-sénégalaises par signe (fonio, bouye, bissap, mil, etc.), intégrables à Chef-AI.",
+        pack3Price: "19,00 €",
+        pack3Note: "Add-on pour la carte",
+        pack3Format: "Recettes + visuels",
+        btnBuy: "Acheter le pack",
+        btnDetails: "Voir détail",
+        chatTitle: "Chef-AI – chat rapide",
+        chatSubtitle: "Pose une question courte sur les recettes ou ton signe.",
+        chatWelcome: "Salut, je suis Chef-AI. Dis-moi ton signe et ce que tu cherches (par ex. « idée de dîner léger pour Lion »).",
+      },
+      en: {
+        brandTagline: "Chef-AI, recipes & digital cards linked to your sign.",
+        qrInside: "QR\nWhatsApp\nor Shop",
+        qrLegend: "Scan the <span>gold QR</span> to chat, order a pack or get Chef-AI help.",
+        pillLabel: "CONNECTED TO YOUR /API/CHEFAI BACKEND",
+        pageTitle: "Chef-AI: parameters & AstroFood shop",
+        pageSubtitle: "Sign ✧ state ✧ meal → 3 AI recipes ready to show on your digital card, plus packs to sell.",
+        langLabel: "UI language:",
+        chefTitle: "Chef-AI parameters",
+        chefDesc: "These fields are sent to <code>/api/chefai</code>. Your backend returns 3 recipes for this sign, energy state and meal type.",
+        chefPill: "Mode: <span>recipes</span> · clean JSON",
+        labelSign: "Zodiac sign",
+        labelState: "Energy state",
+        labelMeal: "Meal type",
+        labelLang: "Recipes language",
+        stateBalanced: "Balanced",
+        stateEnergy: "+ Energy",
+        stateRelax: "Relax / Chill",
+        stateFocus: "Focus / Work",
+        stateLove: "Romantic",
+        mealBreakfast: "Breakfast",
+        mealLunch: "Lunch",
+        mealDinner: "Dinner",
+        mealSnack: "Snack / Drink",
+        btnGenerate: "Generate 3 recipes with Chef-AI",
+        statusIdle: "Ready. Click to query your <strong>/api/chefai</strong> backend.",
+        statusLoading: "Generating… Chef-AI is preparing 3 recipes.",
+        statusOk: "Recipes received from <strong>/api/chefai</strong>.",
+        statusError: "Error: check your /api/chefai backend or the console.",
+        recipesTitle: "Generated recipes (JSON → cards)",
+        recipesDesc: "We display here the title, a short preparation/cooking explanation and an energy note. Then you can push them to your AstroFood digital card.",
+        recipesPlaceholderKicker: "Waiting",
+        recipesPlaceholderTitle: "Click “Generate” to see Chef-AI ideas.",
+        recipesPlaceholderBody: "Your 3 personalized recipes (prep, cooking, tips) will appear here as cards ready for AstroFood.",
+        recipesPlaceholderTag: "Preparation & cooking",
+        shopTitle: "AstroFood shop – Digital packs",
+        shopDesc: "These cards represent your LemonSqueezy (or other) packs. Each “Buy” button can point to the payment URL.",
+        shopPill: "Connect your payment links here",
+        pack1Badge: "Starter Pack",
+        pack1Tagline: "3 signs · PDF + PNG",
+        pack1Title: "Mini AstroFood pack (3 signs)",
+        pack1Desc: "To test the concept: 3 full digital cards (FR/EN/AR) for 3 signs of your choice, ready to send to clients.",
+        pack1Price: "9.90 €",
+        pack1Note: "Personal / test licence",
+        pack1Format: "Format: PNG + PDF",
+        pack2Badge: "Full Zodiac",
+        pack2Tagline: "12 signs · Chef-AI ready",
+        pack2Title: "Full 12-sign pack – Premium Gold",
+        pack2Desc: "The 12 AstroFood Premium Gold cards ready to sell, aligned with Chef-AI (3 meals per sign, 3 energy modes, FR/EN/AR).",
+        pack2Price: "39.00 €",
+        pack2Note: "Pro / restaurant use",
+        pack2Format: "HD files + sources",
+        pack3Badge: "Africa+",
+        pack3Tagline: "Afro-Senegal · Local",
+        pack3Title: "“Africa+” extension – Local recipes",
+        pack3Desc: "Bonus pack with a selection of Afro-Senegalese recipes by sign (fonio, baobab, hibiscus, millet, etc.), ready for Chef-AI.",
+        pack3Price: "19.00 €",
+        pack3Note: "Add-on for the card",
+        pack3Format: "Recipes + visuals",
+        btnBuy: "Buy pack",
+        btnDetails: "See details",
+        chatTitle: "Chef-AI – quick chat",
+        chatSubtitle: "Ask a short question about recipes or your sign.",
+        chatWelcome: "Hi, I’m Chef-AI. Tell me your sign and what you need (e.g. “light dinner idea for Leo”).",
+      },
+      ar: {
+        brandTagline: "شيف-أي آي، وصفات وبطاقات رقمية مرتبطة ببرجك.",
+        qrInside: "رمز\nواتساب\nأو المتجر",
+        qrLegend: "امسح <span>الرمز الذهبي</span> للدردشة، طلب الباقات أو الحصول على مساعدة شيف-أي آي.",
+        pillLabel: "مُتَّصِل بخلفيتك /API/CHEFAI",
+        pageTitle: "شيف-أي آي: الإعدادات ومتجر أستروفود",
+        pageSubtitle: "برج ✧ حالة ✧ وجبة → ٣ وصفات بالذكاء الاصطناعي جاهزة للعرض على بطاقتك الرقمية، مع باقات للبيع.",
+        langLabel: "لغة الواجهة:",
+        chefTitle: "إعدادات شيف-أي آي",
+        chefDesc: "تُرسَل هذه الحقول إلى <code>/api/chefai</code>. الخلفية تُرجِع ٣ وصفات لهذا البرج، وهذه الحالة الطاقية ونوع الوجبة.",
+        chefPill: "الوضع: <span>recipes</span> · JSON نظيف",
+        labelSign: "البرج الفلكي",
+        labelState: "الحالة الطاقية",
+        labelMeal: "نوع الوجبة",
+        labelLang: "لغة الوصفات",
+        stateBalanced: "توازن",
+        stateEnergy: "+ طاقة",
+        stateRelax: "استرخاء",
+        stateFocus: "تركيز / عمل",
+        stateLove: "رومانسي",
+        mealBreakfast: "فطور",
+        mealLunch: "غداء",
+        mealDinner: "عشاء",
+        mealSnack: "سناك / مشروب",
+        btnGenerate: "إنشاء ٣ وصفات مع شيف-أي آي",
+        statusIdle: "جاهز. اضغط لاستدعاء <strong>/api/chefai</strong>.",
+        statusLoading: "جاري الإنشاء… شيف-أي آي يحضّر ٣ وصفات.",
+        statusOk: "تم استلام الوصفات من <strong>/api/chefai</strong>.",
+        statusError: "خطأ: تحقّق من /api/chefai أو من وحدة التحكم.",
+        recipesTitle: "الوصفات المُنشأة (JSON → بطاقات)",
+        recipesDesc: "نعرض هنا العنوان، شرحًا مختصرًا للتحضير/الطهي وملاحظة طاقية. بعدها يمكنك إرسالها إلى بطاقتك الرقمية أستروفود.",
+        recipesPlaceholderKicker: "في الانتظار",
+        recipesPlaceholderTitle: "اضغط « إنشاء » لرؤية أفكار شيف-أي آي.",
+        recipesPlaceholderBody: "ستظهر هنا ٣ وصفات مخصصة (تحضير، طهي، نصائح) على شكل بطاقات جاهزة لأستروفود.",
+        recipesPlaceholderTag: "تحضير وطهي",
+        shopTitle: "متجر أستروفود – باقات رقمية",
+        shopDesc: "تمثّل هذه البطاقات باقاتك في LemonSqueezy (أو غيره). كل زر « شراء » يمكن ربطه برابط الدفع الخاص به.",
+        shopPill: "اربط روابط الدفع هنا",
+        pack1Badge: "باقات البداية",
+        pack1Tagline: "٣ أبراج · PDF + PNG",
+        pack1Title: "باقة أستروفود الصغيرة (٣ أبراج)",
+        pack1Desc: "لتجربة الفكرة: ٣ بطاقات رقمية كاملة (فر/إن/عر) لثلاثة أبراج حسب اختيارك، جاهزة للإرسال للزبائن.",
+        pack1Price: "٩٫٩٠ €",
+        pack1Note: "ترخيص شخصي / تجريبي",
+        pack1Format: "الصيغة: PNG + PDF",
+        pack2Badge: "الأبراج الكاملة",
+        pack2Tagline: "١٢ برجًا · جاهز لشيف-أي آي",
+        pack2Title: "باقة ١٢ برج – بريميوم جولد",
+        pack2Desc: "كل بطاقات أستروفود بريميوم جولد الـ١٢ جاهزة للبيع، متوافقة مع شيف-أي آي (٣ وجبات لكل برج، ٣ أوضاع طاقية، فر/إن/عر).",
+        pack2Price: "٣٩٫٠٠ €",
+        pack2Note: "استعمال احترافي / مطعم",
+        pack2Format: "ملفات عالية الدقة + ملفات المصدر",
+        pack3Badge: "أفريكا+",
+        pack3Tagline: "أفرو-سنغال · محلي",
+        pack3Title: "إضافة « Africa+ » – وصفات محلية",
+        pack3Desc: "باقة إضافية تضم مجموعة وصفات أفرو-سنغالية لكل برج (فونو، بوباب، كركديه، دخن…)، جاهزة لدمجها مع شيف-أي آي.",
+        pack3Price: "١٩٫٠٠ €",
+        pack3Note: "إضافة للبطاقة",
+        pack3Format: "وصفات + صور",
+        btnBuy: "شراء الباقة",
+        btnDetails: "عرض التفاصيل",
+        chatTitle: "شيف-أي آي – محادثة سريعة",
+        chatSubtitle: "اكتب سؤالًا قصيرًا عن الوصفات أو برجك.",
+        chatWelcome: "مرحبًا، أنا شيف-أي آي. أخبرني ببرجك وما تبحث عنه (مثلاً: « فكرة عشاء خفيف لبرج الأسد »).",
+      }
+    };
+
+    const i18nMap = {
+      brandTagline: "[data-i18n='brandTagline']",
+      qrInside: "[data-i18n='qrInside']",
+      qrLegend: "[data-i18n='qrLegend']",
+      pillLabel: "[data-i18n='pillLabel']",
+      pageTitle: "[data-i18n='pageTitle']",
+      pageSubtitle: "[data-i18n='pageSubtitle']",
+      langLabel: "[data-i18n='langLabel']",
+      chefTitle: "[data-i18n='chefTitle']",
+      chefDesc: "[data-i18n='chefDesc']",
+      chefPill: "[data-i18n='chefPill']",
+      labelSign: "[data-i18n='labelSign']",
+      labelState: "[data-i18n='labelState']",
+      labelMeal: "[data-i18n='labelMeal']",
+      labelLang: "[data-i18n='labelLang']",
+      stateBalanced: "[data-i18n='stateBalanced']",
+      stateEnergy: "[data-i18n='stateEnergy']",
+      stateRelax: "[data-i18n='stateRelax']",
+      stateFocus: "[data-i18n='stateFocus']",
+      stateLove: "[data-i18n='stateLove']",
+      mealBreakfast: "[data-i18n='mealBreakfast']",
+      mealLunch: "[data-i18n='mealLunch']",
+      mealDinner: "[data-i18n='mealDinner']",
+      mealSnack: "[data-i18n='mealSnack']",
+      btnGenerate: "[data-i18n='btnGenerate']",
+      statusIdle: "#status",
+      recipesTitle: "[data-i18n='recipesTitle']",
+      recipesDesc: "[data-i18n='recipesDesc']",
+      recipesPlaceholderKicker: "[data-i18n='recipesPlaceholderKicker']",
+      recipesPlaceholderTitle: "[data-i18n='recipesPlaceholderTitle']",
+      recipesPlaceholderBody: "[data-i18n='recipesPlaceholderBody']",
+      recipesPlaceholderTag: "[data-i18n='recipesPlaceholderTag']",
+      shopTitle: "[data-i18n='shopTitle']",
+      shopDesc: "[data-i18n='shopDesc']",
+      shopPill: "[data-i18n='shopPill']",
+      pack1Badge: "[data-i18n='pack1Badge']",
+      pack1Tagline: "[data-i18n='pack1Tagline']",
+      pack1Title: "[data-i18n='pack1Title']",
+      pack1Desc: "[data-i18n='pack1Desc']",
+      pack1Price: "[data-i18n='pack1Price']",
+      pack1Note: "[data-i18n='pack1Note']",
+      pack1Format: "[data-i18n='pack1Format']",
+      pack2Badge: "[data-i18n='pack2Badge']",
+      pack2Tagline: "[data-i18n='pack2Tagline']",
+      pack2Title: "[data-i18n='pack2Title']",
+      pack2Desc: "[data-i18n='pack2Desc']",
+      pack2Price: "[data-i18n='pack2Price']",
+      pack2Note: "[data-i18n='pack2Note']",
+      pack2Format: "[data-i18n='pack2Format']",
+      pack3Badge: "[data-i18n='pack3Badge']",
+      pack3Tagline: "[data-i18n='pack3Tagline']",
+      pack3Title: "[data-i18n='pack3Title']",
+      pack3Desc: "[data-i18n='pack3Desc']",
+      pack3Price: "[data-i18n='pack3Price']",
+      pack3Note: "[data-i18n='pack3Note']",
+      pack3Format: "[data-i18n='pack3Format']",
+      btnBuy: "[data-i18n='btnBuy']",
+      btnDetails: "[data-i18n='btnDetails']",
+      chatTitle: "[data-i18n='chatTitle']",
+      chatSubtitle: "[data-i18n='chatSubtitle']",
+      chatWelcome: "[data-i18n='chatWelcome']",
+    };
+
+    function setStatusHTML(key, lang) {
+      const el = document.getElementById("status");
+      if (!el) return;
+      el.innerHTML = i18n[lang][key] || "";
+    }
+
+    function applyI18n(lang) {
+      const dict = i18n[lang] || i18n.fr;
+
+      for (const [key, selector] of Object.entries(i18nMap)) {
+        const value = dict[key];
+        if (!value) continue;
+        const nodes = document.querySelectorAll(selector);
+        nodes.forEach((node) => {
+          if (key.startsWith("status")) {
+            // status handled separately
+            return;
+          }
+          if (key === "chefDesc" || key === "shopDesc" || key === "qrLegend") {
+            node.innerHTML = value;
+          } else if (key === "qrInside") {
+            node.innerText = value.replace(/\\n/g, "\n");
+          } else {
+            node.textContent = value;
+          }
+        });
+      }
+
+      setStatusHTML("statusIdle", lang);
+
+      // Options texte de quelques selects
+      const stateSelect = document.getElementById("state");
+      if (stateSelect) {
+        const optMap = [
+          ["equilibre", "stateBalanced"],
+          ["energie", "stateEnergy"],
+          ["detente", "stateRelax"],
+          ["focus", "stateFocus"],
+          ["romantique", "stateLove"],
+        ];
+        [...stateSelect.options].forEach((opt) => {
+          const found = optMap.find((m) => m[0] === opt.value);
+          if (found && dict[found[1]]) opt.textContent = dict[found[1]];
+        });
+      }
+
+      const mealSelect = document.getElementById("meal");
+      if (mealSelect) {
+        const optMap = [
+          ["petit_dej", "mealBreakfast"],
+          ["dejeuner", "mealLunch"],
+          ["diner", "mealDinner"],
+          ["snack", "mealSnack"],
+        ];
+        [...mealSelect.options].forEach((opt) => {
+          const found = optMap.find((m) => m[0] === opt.value);
+          if (found && dict[found[1]]) opt.textContent = dict[found[1]];
+        });
+      }
+
+      document.body.dir = lang === "ar" ? "rtl" : "ltr";
+    }
+
+    // ------------------ LOGIQUE RECETTES ------------------
+    function renderRecipes(recipes, lang) {
+      const grid = document.getElementById("recipes-grid");
+      if (!grid) return;
+
+      if (!recipes || !recipes.length) {
+        grid.innerHTML = "";
+        const card = document.createElement("article");
+        card.className = "recipe-card";
+        card.innerHTML = `
+          <div class="recipe-kicker">${i18n[lang].recipesPlaceholderKicker}</div>
+          <div class="recipe-title">${i18n[lang].recipesPlaceholderTitle}</div>
+          <div class="recipe-body">${i18n[lang].recipesPlaceholderBody}</div>
+          <div class="recipe-foot">
+            <span class="recipe-tag">${i18n[lang].recipesPlaceholderTag}</span>
+            <span>⏱ ~</span>
+          </div>
+        `;
+        grid.appendChild(card);
+        return;
+      }
+
+      grid.innerHTML = "";
+      recipes.slice(0, 3).forEach((r, idx) => {
+        const card = document.createElement("article");
+        card.className = "recipe-card";
+        const title = r.title || r.name || `Recette ${idx + 1}`;
+        const prep = r.preparation || r.steps || r.description || "";
+        const energy = r.energy || r.vibe || "";
+        const time = r.time || r.duration || "~";
+        card.innerHTML = `
+          <div class="recipe-kicker">${energy || "Chef-AI"}</div>
+          <div class="recipe-title">${title}</div>
+          <div class="recipe-body">${prep}</div>
+          <div class="recipe-foot">
+            <span class="recipe-tag">${i18n[lang].recipesPlaceholderTag}</span>
+            <span>⏱ ${time}</span>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    async function callChefAi({ sign, state, meal, lang }) {
+      const payload = {
+        sign,
+        state,
+        mealType: meal,
+        lang,
+        mode: "recipes",
+      };
+
+      const res = await fetch(API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) {
+        throw new Error("HTTP " + res.status);
+      }
+      return res.json();
+    }
+
+    // ------------------ CHAT ------------------
+    function addChatMessage(text, who = "ai") {
+      const box = document.getElementById("chat-messages");
+      if (!box) return;
+      const div = document.createElement("div");
+      div.className = "msg " + who;
+      div.textContent = text;
+      box.appendChild(div);
+      box.scrollTop = box.scrollHeight;
+    }
+
+    async function callChefAiChat({ text, sign, lang }) {
+      const payload = {
+        mode: "chat",
+        message: text,
+        sign,
+        lang,
+      };
+
+      const res = await fetch(API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) throw new Error("HTTP " + res.status);
+      return res.json();
+    }
+
+    // ------------------ INIT ------------------
+    document.addEventListener("DOMContentLoaded", () => {
+      let currentLang = "fr";
+      applyI18n(currentLang);
+
+      // Lang buttons
+      document.querySelectorAll(".lang-switch button").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const lang = btn.getAttribute("data-lang");
+          if (!lang) return;
+          currentLang = lang;
+          document
+            .querySelectorAll(".lang-switch button")
+            .forEach((b) => b.classList.remove("is-active"));
+          btn.classList.add("is-active");
+          applyI18n(currentLang);
+        });
+      });
+
+      // Generate button
+      const generateBtn = document.getElementById("generate-btn");
+      const statusEl = document.getElementById("status");
+
+      if (generateBtn && statusEl) {
+        generateBtn.addEventListener("click", async () => {
+          const sign = document.getElementById("sign").value;
+          const state = document.getElementById("state").value;
+          const meal = document.getElementById("meal").value;
+          const recipesLang = document.getElementById("recipes-lang").value;
+
+          setStatusHTML("statusLoading", currentLang);
+          generateBtn.disabled = true;
+
+          try {
+            const data = await callChefAi({
+              sign,
+              state,
+              meal,
+              lang: recipesLang,
+            });
+
+            console.log("Chef-AI response:", data);
+
+            const recipes = data.recipes || data.result || data.items || [];
+            renderRecipes(recipes, currentLang);
+            setStatusHTML("statusOk", currentLang);
+          } catch (err) {
+            console.error("Chef-AI error:", err);
+            setStatusHTML("statusError", currentLang);
+          } finally {
+            generateBtn.disabled = false;
+          }
+        });
+      }
+
+      // Packs (just console log for maintenant)
+     document.querySelectorAll(".btn-pack.primary").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const pack = btn.getAttribute("data-pack");
+    window.location.href = `${BUSINESS_URL}?pack=${encodeURIComponent(pack)}`;
+  });
+});
+
+
+      // Chat
+      const chatToggle = document.getElementById("chat-toggle");
+      const chatPanel = document.getElementById("chat-panel");
+      const chatClose = document.getElementById("chat-close");
+      const chatForm = document.getElementById("chat-form");
+      const chatInput = document.getElementById("chat-input");
+
+      if (chatToggle && chatPanel) {
+        chatToggle.addEventListener("click", () => {
+          chatPanel.classList.toggle("open");
+        });
+      }
+      if (chatClose && chatPanel) {
+        chatClose.addEventListener("click", () => {
+          chatPanel.classList.remove("open");
+        });
+      }
+
+      if (chatForm && chatInput) {
+        chatForm.addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const text = chatInput.value.trim();
+          if (!text) return;
+          addChatMessage(text, "user");
+          chatInput.value = "";
+
+          try {
+            const sign = document.getElementById("sign").value || "aries";
+            const data = await callChefAiChat({
+              text,
+              sign,
+              lang: currentLang,
+            });
+            const reply =
+              data.message ||
+              data.answer ||
+              (data.recipes && data.recipes[0] && data.recipes[0].description) ||
+              "Chef-AI a répondu, mais le format est différent. Vérifie la console.";
+            addChatMessage(reply, "ai");
+          } catch (err) {
+            console.error("Chef-AI chat error:", err);
+            addChatMessage(
+              "Impossible de contacter /api/chefai pour le chat. Vérifie le backend.",
+              "ai"
+            );
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>
