@@ -1,0 +1,335 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AstroFood Business – Packs Premium</title>
+  <style>
+    :root {
+      --gold:#FBBF24;
+      --amber:#f59e0b;
+      --bg: radial-gradient(circle at top, #0f172a, #020617 65%);
+    }
+    *{box-sizing:border-box;}
+    body{
+      margin:0;
+      min-height:100vh;
+      background:var(--bg);
+      color:#e5e7eb;
+      font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:1.5rem;
+    }
+    .page{
+      max-width:960px;
+      width:100%;
+      border-radius:1.25rem;
+      border:1px solid rgba(148,163,184,.35);
+      background:radial-gradient(circle at 0% 0%,rgba(248,250,252,0.03),rgba(15,23,42,.96));
+      box-shadow:0 20px 45px rgba(15,23,42,.8);
+      padding:1.75rem 1.5rem 1.75rem;
+    }
+    header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:1rem;
+      margin-bottom:1.5rem;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:.75rem;
+    }
+    .logo{
+      width:42px;
+      height:42px;
+      border-radius:999px;
+      border:1px solid rgba(251,191,36,.7);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:1.25rem;
+      background:radial-gradient(circle at 30% 0%,#facc15,#b45309 60%,#111827 100%);
+      box-shadow:0 0 24px rgba(251,191,36,.35);
+    }
+    .brand-main{
+      font-size:1rem;
+      letter-spacing:.09em;
+      text-transform:uppercase;
+    }
+    .brand-sub{
+      font-size:.8rem;
+      color:#9ca3af;
+    }
+    .badge{
+      padding:.2rem .7rem;
+      border-radius:999px;
+      border:1px solid rgba(148,163,184,.7);
+      font-size:.7rem;
+      text-transform:uppercase;
+      letter-spacing:.16em;
+      color:#9ca3af;
+    }
+    h1{
+      margin:.2rem 0 .4rem;
+      font-size:1.35rem;
+    }
+    .subtitle{
+      font-size:.88rem;
+      color:#cbd5e1;
+      max-width:560px;
+    }
+    .pack-card{
+      margin-top:1.25rem;
+      border-radius:1rem;
+      border:1px solid rgba(55,65,81,.95);
+      background:radial-gradient(circle at 0% 0%,rgba(251,191,36,.07),rgba(15,23,42,.98));
+      padding:1.25rem 1.1rem 1.35rem;
+    }
+    .pack-kicker{
+      font-size:.72rem;
+      text-transform:uppercase;
+      letter-spacing:.18em;
+      color:#9ca3af;
+      margin-bottom:.3rem;
+    }
+    .pack-title{
+      font-size:1.1rem;
+      font-weight:600;
+      margin-bottom:.25rem;
+    }
+    .pack-tagline{
+      font-size:.82rem;
+      color:var(--gold);
+      margin-bottom:.7rem;
+    }
+    .pack-body{
+      font-size:.85rem;
+      color:#e5e7eb;
+      margin-bottom:.75rem;
+    }
+    .pack-list{
+      padding-left:1.1rem;
+      font-size:.82rem;
+      color:#cbd5e1;
+      margin-bottom:.85rem;
+    }
+    .pack-price{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:.4rem;
+      margin-bottom:1rem;
+    }
+    .price-main{
+      font-size:1.15rem;
+      font-weight:600;
+      color:var(--gold);
+    }
+    .price-note{
+      font-size:.78rem;
+      color:#9ca3af;
+    }
+    .btn-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:.6rem;
+    }
+    .btn{
+      border:none;
+      border-radius:999px;
+      padding:.55rem 1.4rem;
+      font-size:.85rem;
+      font-weight:600;
+      cursor:pointer;
+      display:inline-flex;
+      align-items:center;
+      gap:.45rem;
+    }
+    .btn-primary{
+      background:linear-gradient(to right,#fbbf24,#f97316);
+      color:#111827;
+      box-shadow:0 12px 30px rgba(15,23,42,.6),0 0 24px rgba(250,204,21,.35);
+    }
+    .btn-secondary{
+      background:transparent;
+      border:1px solid rgba(148,163,184,.7);
+      color:#e5e7eb;
+    }
+    footer{
+      margin-top:1.4rem;
+      font-size:.72rem;
+      color:#9ca3af;
+      text-align:right;
+    }
+    footer span{color:var(--gold);}
+    @media (max-width:720px){
+      body{padding:.75rem;}
+      .page{padding:1.25rem 1rem;}
+      header{flex-direction:column;align-items:flex-start;}
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="brand">
+        <div class="logo">♨︎</div>
+        <div>
+          <div class="brand-main">AstroFood Business</div>
+          <div class="brand-sub">Packs digitaux & licence AstroFood Premium Gold</div>
+        </div>
+      </div>
+      <div class="badge">Tunnel : Pack → Page business → LemonSqueezy</div>
+    </header>
+
+    <main>
+      <h1 id="headline">Pack AstroFood</h1>
+      <p class="subtitle" id="subtitle">
+        Cette page reçoit le pack cliqué depuis AstroFood Gold-AI (starter, full, africa) 
+        et te permet ensuite de rediriger le client vers la bonne page de paiement LemonSqueezy.
+      </p>
+
+      <section class="pack-card">
+        <div class="pack-kicker" id="pack-kicker">Pack sélectionné</div>
+        <div class="pack-title" id="pack-title">Titre du pack</div>
+        <div class="pack-tagline" id="pack-tagline">Tagline du pack</div>
+
+        <div class="pack-body" id="pack-body">
+          Description du pack.
+        </div>
+
+        <ul class="pack-list" id="pack-list">
+          <!-- points dynamiques -->
+        </ul>
+
+        <div class="pack-price">
+          <div>
+            <div class="price-main" id="pack-price">—</div>
+            <div class="price-note" id="pack-license">Licence & usage</div>
+          </div>
+          <div class="price-note" id="pack-format">Format des fichiers</div>
+        </div>
+
+        <div class="btn-row">
+          <button class="btn btn-primary" id="btn-pay">
+            🔐 Payer ce pack (LemonSqueezy)
+          </button>
+          <button class="btn btn-secondary" id="btn-back">
+            ⬅︎ Retour à AstroFood Gold-AI
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>AstroFood</span> · Interface business locale (HTML statique) – remplace ensuite les liens par tes URL LemonSqueezy.
+    </footer>
+  </div>
+
+  <script>
+              const API_URL = "/api/chefai";
+              const AFRICA_URL = "http://localhost:3002/business.html?pack=africa";
+             const FULL_URL = "http://localhost:3002/business.html?pack=full";
+            const STARTER_URL = "http://localhost:3002/business.html?pack=starter";
+   
+    // Récupère le pack dans l'URL ?pack=starter|full|africa
+    const params = new URLSearchParams(window.location.search);
+    const packKey = params.get("pack") || "full"; 
+  
+    // Définition des packs (tu pourras ajuster les textes & prix)
+    const packs = {
+      starter: {
+        kicker: "Starter Pack",
+        title: "Mini-pack AstroFood (3 signes)",
+        tagline: "Idéal pour tester le concept avec tes premiers clients.",
+        body: "Tu reçois 3 cartes digitales AstroFood Premium Gold complètes, pour 3 signes au choix. Chaque carte est prête à être envoyée à tes clients (FR/EN/AR) avec un design doré inspiré de la version Premium.",
+        points: [
+          "3 signes au choix (ex : Bélier, Lion, Poissons).",
+          "Cartes livrées en PNG + PDF haute qualité.",
+          "Texte adapté pour FR / EN / AR.",
+          "Idéal pour lancer l’offre AstroFood dans un seul établissement."
+        ],
+        price: "9,90 €",
+        license: "Licence personnelle / test, pour un petit volume de clients.",
+        format: "Fichiers PNG + PDF (prêt à imprimer ou envoyer).",
+        payUrl: "https://astrofoody.lemonsqueezy.com"
+      },
+      full: {
+        kicker: "Full Zodiac",
+        title: "Pack complet 12 signes – Premium Gold",
+        tagline: "L’offre complète AstroFood pour un restaurant, café ou service en ligne.",
+        body: "Tu reçois les 12 cartes AstroFood Premium Gold (une par signe), alignées avec Chef-AI : 3 repas par signe, 3 états énergétiques, textes FR/EN/AR. Idéal pour une offre professionnelle continue.",
+        points: [
+          "12 cartes complètes (tous les signes du zodiaque).",
+          "Recettes connectées à ta logique Chef-AI.",
+          "Support multi-langue : français, anglais, arabe.",
+          "Parfait pour menu digital, QR code ou service en ligne."
+        ],
+        price: "39,00 €",
+        license: "Licence pro pour un établissement / business.",
+        format: "Cartes HD + éventuellement fichiers source selon ton offre.",
+        payUrl: "https://astrofoody/.lemonsqueezy.com"
+      },
+      africa: {
+        kicker: "Africa+",
+        title: "Extension « Africa+ » – Recettes locales",
+        tagline: "Ajoute une touche Afro-Sénégalaise à tes cartes AstroFood.",
+        body: "Une sélection de recettes locales (fonio, bouye, bissap, mil, etc.) organisée par signe, que tu peux connecter à Chef-AI pour proposer des variantes Afrique+ à tes clients.",
+        points: [
+          "Recettes afro-sénégalaises classées par signe.",
+          "Descriptions prêtes à intégrer dans Chef-AI.",
+          "Idéal pour une offre différenciante dans ton marché.",
+          "Peut être combiné avec le pack complet 12 signes."
+        ],
+        price: "19,00 €",
+        license: "Add-on lié à un pack existant.",
+        format: "Fiches recettes + visuels pour tes supports.",
+        payUrl: "https://astrofoody.lemonsqueezy.com"
+      }
+    };
+
+    const selected = packs[packKey] || packs.full;
+
+    // Remplit la page selon le pack sélectionné
+    document.getElementById("headline").textContent = "Pack sélectionné : " + selected.title;
+    document.getElementById("subtitle").textContent =
+      "Tu viens depuis AstroFood Gold-AI avec le pack \"" + packKey + "\". Vérifie les détails ci-dessous puis envoie le client vers la bonne page de paiement LemonSqueezy.";
+    document.getElementById("pack-kicker").textContent = selected.kicker;
+    document.getElementById("pack-title").textContent = selected.title;
+    document.getElementById("pack-tagline").textContent = selected.tagline;
+    document.getElementById("pack-body").textContent = selected.body;
+    document.getElementById("pack-price").textContent = selected.price;
+    document.getElementById("pack-license").textContent = selected.license;
+    document.getElementById("pack-format").textContent = selected.format;
+
+    const list = document.getElementById("pack-list");
+    list.innerHTML = "";
+    selected.points.forEach((p) => {
+      const li = document.createElement("li");
+      li.textContent = p;
+      list.appendChild(li);
+    });
+
+    // Bouton paiement → LemonSqueezy (remplace les URLs par les tiennes)
+    document.getElementById("btn-pay").addEventListener("click", () => {
+      if (!selected.payUrl || selected.payUrl.includes("lemonsqueezy/astrofoody.lemonsqueezy.com")) {
+        alert("Remplace 'TON-LIEN-...' par tes vrais liens LemonSqueezy dans business.html 😄");
+        return;
+      }
+      window.location.href = selected.payUrl;
+    });
+
+    // Bouton retour → revient sur la page Gold-AI locale
+    document.getElementById("btn-back").addEventListener("click", () => {
+      // adapte le port / chemin si besoin
+      window.location.href = "/gold_ai.html";
+    });
+  </script>
+</body>
+</html>
